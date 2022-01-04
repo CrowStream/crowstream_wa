@@ -6,7 +6,7 @@ function NavbarCrowStream() {
         <Navbar bg="dark" expand="lg" style={{ minHeight: '80px', color: 'white' }}>
             <Container>
                 <Navbar.Brand href="#home" style={{ color: 'white' }}>
-                    <Image src='/assets/images/logo_provisional.PNG' width='60px'/>
+                    <Image src='/assets/images/Crowstream.png' width='60px'/>
                     CrowStream
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -15,7 +15,7 @@ function NavbarCrowStream() {
                     <Nav.Link href="#home" style={{ color: 'white' }}>Quienes somos</Nav.Link>
                     <Nav.Link href="#link" style={{ color: 'white' }}>Preguntas frecuentes</Nav.Link>
                 </Nav>
-                <Button variant="primary" style={{right: '0px'}}>Iniciar Sesión</Button>{' '}
+                <Button variant="primary" style={{right: '0px', backgroundColor: '#222255'}}>Iniciar Sesión</Button>{' '}
                 </Navbar.Collapse>
             </Container>
         </Navbar>
