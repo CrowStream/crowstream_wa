@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
 import NavbarCrowStream from './components/Navbar';
-import Login from './components/Login';
+import Footer from './components/Footer';
+import ControlledCarousel from './components/Carousel';
 
 
 function App() {
   return (
     <div className="App">
       <NavbarCrowStream/>
-      <Login/>
+      <ControlledCarousel/>
+      <Footer/>
+
     </div>
   );
 }
