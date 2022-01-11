@@ -12,7 +12,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://pixabay.com/es/photos/se-sec%c3%b3-sale-de-telara%c3%b1as-escarcha-6881798/"
+          src="https://occ-0-987-990.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABf07Ihf0o-BL7ks_pjwU1BfBJzxgHA8Ao8jMZ5dfJA8PZ_R7l-NyvQHtTj1TpmnL7lnR2SA8Nv4VGzEO9yJkmJ_fwArM.jpg?r=7c6"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -23,7 +23,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="holder.js/800x400?text=Second slide&bg=282c34"
+          src="https://cdn.atomix.vg/wp-content/uploads/2021/11/spider-man-no-way-home-villains-poster-691x1024.jpg"
           alt="Second slide"
         />
 
@@ -35,7 +35,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="holder.js/800x400?text=Third slide&bg=20232a"
+          src="https://areajugones.sport.es/wp-content/uploads/2018/10/MV5BZGRjODk1YjMtNjg0ZS00N2MzLWI2ZjMtOWI0ZDI5MzBlN2IxXkEyXkFqcGdeQXVyNDU5MzA2NzI@._V1_SX1777_CR001777960_AL_.jpg"
           alt="Third slide"
         />
 
