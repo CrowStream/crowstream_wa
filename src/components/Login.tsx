@@ -7,6 +7,7 @@ import { store, RootState } from '../redux/store';
 import { SignIn } from '../services';
 import { useSelector, useDispatch } from 'react-redux';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { Link } from "react-router-dom";
 
 function CustomToggle(props: any) {
     const { children, eventKey } = props;
@@ -66,9 +67,13 @@ function LoginCrowStream() {
                         onChange={(e) => setLoginPasswordInput(e.target.value)}
                     />
                 </Form.Group>
-                <Button variant="primary" type="submit" onClick={handleLogin}>
-                    Submit
-                </Button>
+                <Link to='login'>
+                    <Button variant="primary" type="submit" onClick={handleLogin}>
+                        Submit
+                        <Link to='/login'>
+                        </Link>
+                    </Button>
+                </Link>
             </Form>
         </div>
     );
