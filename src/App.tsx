@@ -10,7 +10,8 @@ import {
   Link
 } from "react-router-dom";
 import LoginCrowStream from './components/Login';
-
+import VideoRow from './components/VideoRow';
+import {Catalogue} from './views/catalogue';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ControlledCarousel />} />
         <Route path="/login" element={<LoginCrowStream />} />
+        <Route path="/home" element={<Catalogue />}/>
       </Routes>
       <Footer/>
     </div>

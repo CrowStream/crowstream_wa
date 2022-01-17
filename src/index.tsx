@@ -8,7 +8,7 @@ import {createStore} from 'redux';
 import { Provider } from 'react-redux';
 import { store } from './redux';
 import { BrowserRouter as Router } from "react-router-dom";
-
+import {ApolloClient, InMemoryCache, gql, HttpLink} from "@apollo/client";
 
 ReactDOM.render(
   
