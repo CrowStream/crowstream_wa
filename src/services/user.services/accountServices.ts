@@ -11,7 +11,7 @@ import {
 import { User } from "../../redux/types";
 
 // Crowstream
-import client from "../commonServices";
+import client from "../common.services";
 
 
 const who_i_am: DocumentNode = gql`

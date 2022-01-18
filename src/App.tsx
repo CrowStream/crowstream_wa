@@ -12,8 +12,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-
-
+import VideoRow from './components/VideoRow';
+import {Catalogue} from './views/catalogue';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path="/login" element={<LoginCrowStream />} />
         <Route path="/signin" element={<SignInCrowStream />} />
         <Route path="/video" element={<VideoPlayer />} />
+        <Route path="/home" element={<Catalogue />}/>
       </Routes>
       <Footer/>
     </div>
