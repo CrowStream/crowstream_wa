@@ -17,12 +17,8 @@ function NavbarCrowStream() {
                     <Nav.Link href="#home" style={{ color: 'white' }}>Quienes somos</Nav.Link>
                     <Nav.Link href="#link" style={{ color: 'white' }}>Preguntas frecuentes</Nav.Link>
                 </Nav>
-                <Link to='/login'>
-                  <Nav.Link href="#home" style={{ color: 'white' }}>Iniciar sesión </Nav.Link>
-                </Link>
-                <Link to='signin'>
-                  <Nav.Link href="#link" style={{ color: '#27a5d7' }}>Registrarse</Nav.Link>
-                </Link>
+                  <Nav.Link href="/login" style={{ color: 'white' }}>Iniciar sesión </Nav.Link>
+                  <Nav.Link href="/signin" style={{ color: '#27a5d7' }}>Registrarse</Nav.Link>
                 
                 </Navbar.Collapse>
             </Container>

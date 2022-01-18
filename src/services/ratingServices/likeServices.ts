@@ -9,7 +9,7 @@ import { LikeVideo } from "../../redux/types";
 
 const likevideo: DocumentNode = gql`
     mutation($user_id: String!, $video_id: String!, $like: Int!) {
-        createPayment(payment: {
+        Liking(liked: {
             user_id: $user_id
             video_id: $video_id
             like: $like
@@ -23,7 +23,7 @@ const likevideo: DocumentNode = gql`
     }
 `;
 
-export async function LikegVideo(user_id: String, video_id: String, like: number){
+export async function LikeVideo(user_id: String, video_id: String, like: number){
     try{
         const result = await client.mutate({
             mutation: likevideo,
