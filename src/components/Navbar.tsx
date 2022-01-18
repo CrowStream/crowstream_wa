@@ -1,11 +1,11 @@
 import {Button, Image, Nav, Navbar, NavDropdown, Container} from 'react-bootstrap';
 import Login from './Login';
-
+import { Link } from "react-router-dom";
 
 function NavbarCrowStream() {
     return (
       <div className="Navbar">
-        <Navbar bg="dark" expand="lg" variant="dark" style={{ minHeight: '80px', color: 'white' }}>
+        <Navbar bg="dark" expand="lg" variant="dark" style={{ minHeight: '20px', color: 'white' }}>
             <Container>
                 <Navbar.Brand href="#home" style={{ color: 'white' }}>
                     <Image style={{margin: 'auto' }} src='/assets/images/Crowstream.png' width='90px'/>
@@ -17,15 +17,12 @@ function NavbarCrowStream() {
                     <Nav.Link href="#home" style={{ color: 'white' }}>Quienes somos</Nav.Link>
                     <Nav.Link href="#link" style={{ color: 'white' }}>Preguntas frecuentes</Nav.Link>
                 </Nav>
-                <Nav>
-                  <NavDropdown title="Iniciar sesión" id="collasible-nav-dropdown">
-                    <NavDropdown.Item ><Login></Login></NavDropdown.Item>
-                  </NavDropdown>
-                  <NavDropdown title="Registrarse" id="collasible-nav-dropdown">
-                    <NavDropdown.Item >hola</NavDropdown.Item>
-                  </NavDropdown>
-                </Nav>
-                
+                <Link to='/login'>
+                  <Nav.Link href="#home" style={{ color: 'white' }}>Iniciar sesión </Nav.Link>
+                </Link>
+                <Link to='signin'>
+                  <Nav.Link href="#link" style={{ color: '#27a5d7' }}>Registrarse</Nav.Link>
+                </Link>
                 
                 </Navbar.Collapse>
             </Container>

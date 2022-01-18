@@ -67,6 +67,34 @@ export async function WhoIAm(){
     
 }
 
+export async function LogIn(email: String, password: String){
+    try{
+        const result = await client.mutate({
+            mutation: sign_in,
+            variables: {
+                email: email,
+                password: password
+            }
+        });
+        const user: User = {
+            id: '',
+            email: '',
+            is_email_verified: '' != '',
+            token: result.data.signin.token.token
+        }
+        return user;
+    }catch(error){
+        const user: User = {
+            id: '',
+            email: '',
+            is_email_verified: '' != '',
+            token: ''
+        }
+        return user;
+    }
+    
+}
+
 export async function SignIn(email: String, password: String){
     try{
         const result = await client.mutate({

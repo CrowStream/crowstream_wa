@@ -43,8 +43,16 @@
 {
   font-family: 'Nunito', sans-serif;
 }
+/*#INICIAR SESION*/
+#init{
+  border-radius: 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
 
-#FOOTER
+
+/*##FOOTER*/
 .Footer
 {
   background-color:#26272b;
