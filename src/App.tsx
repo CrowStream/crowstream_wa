@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import ControlledCarousel from './components/Carousel';
 import LoginCrowStream from './components/Login';
 import SignInCrowStream from './components/SignIn';
+import VideoPlayer from './components/VideoPlayer';
 import {
   BrowserRouter as Router,
   Routes,
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<ControlledCarousel />} />
         <Route path="/login" element={<LoginCrowStream />} />
         <Route path="/signin" element={<SignInCrowStream />} />
+        <Route path="/video" element={<VideoPlayer />} />
       </Routes>
       <Footer/>
     </div>
