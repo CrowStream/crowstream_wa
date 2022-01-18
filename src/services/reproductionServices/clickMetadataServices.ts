@@ -10,7 +10,7 @@ import {
 } from "@apollo/client";
 
 // Crowstream
-import client from "../commonServices";
+import client from "../common.services";
 
 const get_click_count_metadata: DocumentNode = gql`
     query getClickCountMetadataById($user_id: String!, $video_id: Int!)   {

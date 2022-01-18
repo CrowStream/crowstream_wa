@@ -4,8 +4,8 @@ import {
     gql
 } from "@apollo/client";
 
-import client from "../commonServices";
-import { LikeVideo } from "../../redux/types";
+import client from "../common.services";
+import { LikedVideo } from "../../redux/types";
 
 const likevideo: DocumentNode = gql`
     mutation($user_id: String!, $video_id: String!, $like: Int!) {
@@ -33,7 +33,7 @@ export async function LikeVideo(user_id: String, video_id: String, like: number)
                 like: like
             }
         });
-        const liked: LikeVideo = {
+        const liked: LikedVideo = {
             user_id: '',
             video_id: '',
             like: 0
@@ -41,7 +41,7 @@ export async function LikeVideo(user_id: String, video_id: String, like: number)
         console.log(result.data);
         return liked;
     }catch(error){
-        const liked: LikeVideo = {
+        const liked: LikedVideo = {
             user_id: '',
             video_id: '',
             like: 0

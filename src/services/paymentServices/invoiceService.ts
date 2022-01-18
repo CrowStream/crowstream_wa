@@ -6,7 +6,7 @@ import {
 import { Invoice } from "../../redux/types";
 
 // Crowstream
-import { token_protected_query, token_protected_mutation } from "../commonServices";
+import { token_protected_query, token_protected_mutation } from "../common.services";
 
 const retrieve_invoice: DocumentNode = gql`
     query($invoice_id: ID!) {

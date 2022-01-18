@@ -7,7 +7,7 @@ function NavbarCrowStream() {
       <div className="Navbar">
         <Navbar bg="dark" expand="lg" variant="dark" style={{ minHeight: '20px', color: 'white' }}>
             <Container>
-                <Navbar.Brand href="#home" style={{ color: 'white' }}>
+                <Navbar.Brand href="/" style={{ color: 'white' }}>
                     <Image style={{margin: 'auto' }} src='/assets/images/Crowstream.png' width='90px'/>
                     <h3>CrowStream</h3>
                 </Navbar.Brand>
