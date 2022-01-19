@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+    crowstream_wa:
+        build:
+            context: .
+            dockerfile: dockerfile
+        image: crowstream2021/crowstream_wa
+        container_name: crowstream_wa_dev
+        ports:
+            - '3000:3000'
+        volumes:
+            - .:/urs/src/app       
+
+   
