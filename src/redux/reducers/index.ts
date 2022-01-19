@@ -2,13 +2,14 @@ import { combineReducers } from 'redux';
 import userReducer from './user';
 import paymentGroupReducer from './payment';
 import paymentMethodGroupReducer from './payment_method'
-import catalogueReducer from './catalogue'
+import catalogueReducer, {descriptionReducer} from './catalogue'
 
 const rootReducer = combineReducers({
     user: userReducer,
     payment: paymentGroupReducer,
     payment_method: paymentMethodGroupReducer,
-    catalogue: catalogueReducer
+    catalogue: catalogueReducer,
+    description: descriptionReducer
 });
 
 
