@@ -23,7 +23,13 @@ const likevideo: DocumentNode = gql`
     }
 `;
 
-export async function LikeVideo(user_id: String, video_id: String, like: number){
+const retrieve_actual_like: DocumentNode = gql`
+    query($userId: String!, $video_id: Int!){
+        actualLike(userId: $userId, videoId: $video_id)
+    }
+`;
+
+export async function LikedVideo(user_id: String, video_id: String, like: number){
     try{
         const result = await client.mutate({
             mutation: likevideo,
@@ -49,4 +55,21 @@ export async function LikeVideo(user_id: String, video_id: String, like: number)
         return liked;
     }
     
+}
+
+export async function retrieve_actualLike(user_id: string, video_id: number){
+    try{
+        const result: ApolloQueryResult<any> = await client.query({
+            query: retrieve_actual_like,
+            variables: {
+                userId: user_id,
+                video_id: video_id
+            }
+        });
+        return result.data.actualLike
+        
+    }catch(error){
+        let actual: number = -1
+        return actual
+    }
 }

@@ -3,3 +3,7 @@ export interface LikedVideo {
     video_id: string,
     like: number
 }
+
+export interface actualLike {
+    like: number
+}
