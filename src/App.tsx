@@ -1,3 +1,4 @@
+////"start": "HTTPS=true SSL_CRT_FILE=./crowstream.crt SSL_KEY_FILE=./crowstream.key react-scripts start",
 import React from 'react';
 import './App.css';
 import NavbarCrowStream from './components/Navbar';
@@ -14,26 +15,26 @@ import {
 } from "react-router-dom";
 import VideoRow from './components/VideoRow';
 import {Catalogue} from './views/catalogue';
-import ProfilesPanel from './views/profiles';
+import { Reproduction } from './views/reproduction';
+//import ProfilesPanel from './views/profiles';
+import {store} from './redux/store';
+import { Provider } from 'react-redux';
+
 
 function App() {
   return (
     <div className="App">
+    <Provider store={store}>
       <NavbarCrowStream/>
       <Routes>
         <Route path="/" element={<ControlledCarousel />} />
         <Route path="/login" element={<LoginCrowStream />} />
         <Route path="/signin" element={<SignInCrowStream />} />
-        
-        {/* <Route path="/video" element={<VideoPlayer episode={{
-          id: 0,
-          poster: 'https://storage.googleapis.com/crowstream-data/CatalogueImages/django_unchained_2012.jpeg',
-          video: 'https://storage.googleapis.com/crowstream-data/CatalogueVideos/django_unchained_2012.mp4'
-        }} />} /> */}
+        <Route path="/video" element={<Reproduction/>}/>
         <Route path="/home" element={<Catalogue />}/>
-        <Route path="/profiles" element={<ProfilesPanel />}/>
       </Routes>
       <Footer/>
+    </Provider>
     </div>
   );
 }

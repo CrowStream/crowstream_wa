@@ -4,7 +4,6 @@
 
 // Redux Toolkit
 import {
-    ActionReducerMapBuilder,
     CaseReducerActions,
     createSlice,
     PayloadAction,
@@ -21,7 +20,7 @@ const initialState: User = {
     id: '',
     email: '',
     is_email_verified: false,
-    token: ''
+    token: 'asdasdasdasd'
 }
 
 

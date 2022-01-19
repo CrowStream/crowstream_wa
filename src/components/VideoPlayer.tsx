@@ -1,7 +1,7 @@
 import ReactPlayer from 'react-player';
 import { UpdateClickCountMetadata } from '../services';
 
-interface VideoPlayerProps {
+export interface VideoPlayerProps {
     episode: {
         id: number,
         poster: string,

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeModalShow } from "../redux";
 import { RootState } from "../redux/store";
 import { Video } from "../redux/types/catalogue";
+import {store} from "../redux/store";
 
 interface DescriptionProps{
     video: Video,
@@ -32,7 +33,7 @@ function Description(props: DescriptionProps){
                 <Image src={video.thumbnail_url} height={300} width={470}/>
                 <h1>{video.video_name}      <Button>👍</Button><Button>👎</Button></h1><p></p>
                 <h2>{video.released_year}</h2><p></p>
-                <Button size={"lg"}>Play</Button>
+                <Button href="/video" onClick={() => {console.log(store.getState())}}>Play</Button>
                 <strong>{video.description}</strong><p></p>
                 Productor: {video.producer}<br></br>
                 Director: {video.director}<br></br>

@@ -1,13 +1,11 @@
 import React, { MouseEventHandler, useState } from 'react';
 import { Button, Form, Container, Accordion, useAccordionButton, Col, Row } from 'react-bootstrap';
-import { AnyAction } from 'redux';
-import sign_in from '../redux/reducers';
 import { User } from '../redux/types';
-import { store, RootState } from '../redux/store';
-import { LogIn } from '../services';
+import { SignIn } from '../services';
 import { useSelector, useDispatch } from 'react-redux';
-import { PayloadAction } from '@reduxjs/toolkit';
-import { Link } from "react-router-dom";
+import {sign_in} from '../redux/reducers/user';
+import {RootState, store, useReduxDispatch} from '../redux/store';
+
 
 function CustomToggle(props: any) {
     const { children, eventKey } = props;
@@ -28,23 +26,20 @@ function CustomToggle(props: any) {
 
 function LoginCrowStream() {
 
-    const user: RootState = useSelector((state: RootState) => state);
-
+    const user: User = useSelector((state: RootState) => state.user);
     const [loginEmailInput, setLoginEmailInput] = useState("");
     const [loginPasswordInput, setLoginPasswordInput] = useState("");
 
-    const dispatch = useDispatch();
+    const dispatch = useReduxDispatch();
 
     const handleLogin = async () => {
         if (!loginEmailInput || !loginPasswordInput) return;
-        console.log("ANTES:" + JSON.stringify(store.getState()))
-        const authenticatedUser: PayloadAction<User> = { payload: await LogIn(loginEmailInput, loginPasswordInput), type: sign_in.name }
-        dispatch(sign_in(user, authenticatedUser));
-        console.log("DESPUES:" + JSON.stringify(store.getState()))
+        dispatch(sign_in({state: user, payload: await SignIn(loginEmailInput, loginPasswordInput)}));
     }
 
     return (
         <div className="Login">
+            {user.token}
             <Row className="justify-content-md-center">
             <Col md="6">
                     <Container id="init">
@@ -71,7 +66,7 @@ function LoginCrowStream() {
                                     onChange={(e) => setLoginPasswordInput(e.target.value)}
                                 />
                             </Form.Group>
-                            <Button variant="primary" type="submit" onClick={handleLogin}>
+                            <Button variant="primary" type="button" onClick={handleLogin}>
                                     Enviar
                             </Button>
                         </Form>

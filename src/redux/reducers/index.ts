@@ -6,15 +6,15 @@ import catalogueReducer, {descriptionReducer} from './catalogue'
 
 const rootReducer = combineReducers({
     user: userReducer,
-    payment: paymentGroupReducer,
-    payment_method: paymentMethodGroupReducer,
+    //payment: paymentGroupReducer,
+    //payment_method: paymentMethodGroupReducer,
     catalogue: catalogueReducer,
     description: descriptionReducer
 });
 
 
 export * from './user';
-export * from './payment';
-export * from './payment_method'
+//export * from './payment';
+//export * from './payment_method'
 export * from './catalogue';
 export default rootReducer;
