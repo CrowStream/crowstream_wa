@@ -14,6 +14,7 @@ import {
 } from "react-router-dom";
 import VideoRow from './components/VideoRow';
 import {Catalogue} from './views/catalogue';
+import ProfilesPanel from './views/profiles';
 
 function App() {
   return (
@@ -23,8 +24,14 @@ function App() {
         <Route path="/" element={<ControlledCarousel />} />
         <Route path="/login" element={<LoginCrowStream />} />
         <Route path="/signin" element={<SignInCrowStream />} />
-        <Route path="/video" element={<VideoPlayer />} />
+        
+        {/* <Route path="/video" element={<VideoPlayer episode={{
+          id: 0,
+          poster: 'https://storage.googleapis.com/crowstream-data/CatalogueImages/django_unchained_2012.jpeg',
+          video: 'https://storage.googleapis.com/crowstream-data/CatalogueVideos/django_unchained_2012.mp4'
+        }} />} /> */}
         <Route path="/home" element={<Catalogue />}/>
+        <Route path="/profiles" element={<ProfilesPanel />}/>
       </Routes>
       <Footer/>
     </div>
