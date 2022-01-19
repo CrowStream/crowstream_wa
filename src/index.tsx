@@ -4,10 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {createStore} from 'redux';
+import { Provider } from 'react-redux';
+import { store } from './redux';
+import { BrowserRouter as Router } from "react-router-dom";
+import {ApolloClient, InMemoryCache, gql, HttpLink} from "@apollo/client";
 
 ReactDOM.render(
+  
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
