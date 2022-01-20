@@ -29,7 +29,7 @@ function VideoRow(props: VideoRowProps){
                         CreateClickCountMetadata(video.id);
                         dispatch(retrieve_actual({user_id: profile, video_id: video.id ,like: await retrieve_actualLike(profile,  video.id)}));
                     }}>
-                    <Image rounded width={300} height={180} src={video.thumbnail_url} ></Image>
+                    <Image id='poster' rounded width={500} height={180} src={video.thumbnail_url} ></Image>
                     <h5>{video.video_name}</h5>
                     </div>
                 </ListGroup.Item>
