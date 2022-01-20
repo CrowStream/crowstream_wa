@@ -29,7 +29,7 @@ const retrieve_actual_like: DocumentNode = gql`
     }
 `;
 
-export async function LikedVideo(user_id: String, video_id: String, like: number){
+export async function LikeVideo(user_id: String, video_id: String, like: number){
     try{
         const result = await client.mutate({
             mutation: likevideo,
