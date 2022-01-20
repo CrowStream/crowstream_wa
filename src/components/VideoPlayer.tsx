@@ -11,7 +11,9 @@ export interface VideoPlayerProps {
 
 const VideoPlayer = (props: VideoPlayerProps) => {
     const { episode } = props;
-
+    console.log(episode.id);
+    console.log(episode.poster);
+    console.log(episode.video);
     async function updateClickCount() {
         const res = await UpdateClickCountMetadata("c1539cc6-3cc5-4087-ab40-b73b8f579236", episode.id);
     }

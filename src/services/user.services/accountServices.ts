@@ -8,11 +8,41 @@ import {
     DocumentNode,
     gql
 } from "@apollo/client";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux";
 import { User } from "../../redux/types";
 
 // Crowstream
-import client from "../common.services";
+import client, { token_protected_mutation, token_protected_query } from "../common.services";
 
+
+const sign_in: DocumentNode = gql`
+    mutation($email: String!, $password: String!) {
+        signin(accountCredentials: {
+            email: $email
+            password: $password
+        }) {
+            token {
+                token
+            }
+        }
+    }
+`;
+
+const sign_up: DocumentNode = gql`
+    mutation($email: String!, $password: String!) {
+        signup(accountCredentials: {
+            email: $email
+            password: $password
+        }) {
+            account {
+                id
+                email
+                is_email_verified
+            }
+        }
+    }
+`;
 
 const who_i_am: DocumentNode = gql`
     query {
@@ -24,35 +54,20 @@ const who_i_am: DocumentNode = gql`
     }
 `;
 
-const sign_in: DocumentNode = gql` 
-    mutation($email: String!, $password: String!) {
-        signin(accountCredentials: {
-        email: $email
-        password: $password
-        }) {
-        token {
-            token
-        }
-        }
-    }
-`;
-
-// TODO: Fix token usage
-export async function WhoIAm(){
+export async function SignIn(email: String, password: String) {
     try{
-        const result: ApolloQueryResult<any> = await client.query({
-            query: who_i_am,
-            context: {
-                headers: {
-                    authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwZTU4OTc5LTM3MWYtNDdhMy04ODdhLTQ2ZjNkZmM3MTc0MCIsImVtYWlsIjoidGVzdHVzZXJAdGVzdC5jb20iLCJpYXQiOjE2NDA4MjcyMzEsImV4cCI6MTY0MDgzMDgzMX0.CgnuFOkkNUJky87Fk313odb_E-JfO_1IvxqIzuGaN8c"
-                }
+        const result = await client.mutate({
+            mutation: sign_in,
+            variables: {
+                email: email,
+                password: password
             }
         });
         const user: User = {
-            id: result.data.whoAmI.id,
-            email: result.data.whoAmI.email,
-            is_email_verified: result.data.whoAmI.id,
-            token: ''
+            id: '',
+            email: '',
+            is_email_verified: '' != '',
+            token: result.data.signin.token.token
         }
         return user;
     }catch(error){
@@ -67,20 +82,52 @@ export async function WhoIAm(){
     
 }
 
-export async function SignIn(email: String, password: String){
+export async function SignUp(email: String, password: String) {
     try{
         const result = await client.mutate({
-            mutation: sign_in,
-            variables: {
+            mutation: sign_up,
+            variables:{
                 email: email,
                 password: password
             }
         });
-        const user: User = {
+        console.log("Result: "+result.data.signup.account.id)
+        let user: User = {
+            id: result.data.signup.account.id,
+            email: result.data.signup.account.email,
+            is_email_verified: result.data.signup.account.is_email_verified,
+            token: ''
+        }
+        console.log("Reducer id: "+user.id)
+        return user;
+    }catch(error){
+        let user: User = {
             id: '',
             email: '',
-            is_email_verified: '' != '',
-            token: result.data.signin.token.token
+            is_email_verified: false,
+            token: ''
+        }
+        console.log("Signup error: "+error)
+        return user;
+    }
+}
+
+export async function WhoIAm() {
+    try{
+        const token = useSelector((state: RootState) => state.user.token)
+        const result: ApolloQueryResult<any> = await client.query({
+            query: who_i_am,
+            context: {
+                headers: {
+                    authorization: "`Bearer " + token
+                }
+            }
+        });
+        const user: User = {
+            id: result.data.whoAmI.id,
+            email: result.data.whoAmI.email,
+            is_email_verified: result.data.whoAmI.id,
+            token: ''
         }
         return user;
     }catch(error){

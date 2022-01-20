@@ -5,21 +5,17 @@ import NavbarCrowStream from './components/Navbar';
 import Footer from './components/Footer';
 import ControlledCarousel from './components/Carousel';
 import LoginCrowStream from './components/Login';
-import SignInCrowStream from './components/SignIn';
-import VideoPlayer from './components/VideoPlayer';
+import SignInCrowStream from './components/SignUp';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
-import VideoRow from './components/VideoRow';
 import {Catalogue} from './views/catalogue';
 import { Reproduction } from './views/reproduction';
-//import ProfilesPanel from './views/profiles';
+import ProfilesPanel from './views/profiles';
 import {store} from './redux/store';
 import { Provider } from 'react-redux';
-
 
 function App() {
   return (
@@ -32,6 +28,7 @@ function App() {
         <Route path="/signin" element={<SignInCrowStream />} />
         <Route path="/video" element={<Reproduction/>}/>
         <Route path="/home" element={<Catalogue />}/>
+        <Route path="/profiles" element={<ProfilesPanel />}/>
       </Routes>
       <Footer/>
     </Provider>

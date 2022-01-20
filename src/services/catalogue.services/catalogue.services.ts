@@ -15,7 +15,7 @@ import { Catalogue, VideoSet, Video, OrderedVideoSet } from "../../redux/types";
 import client from "../common.services";
 
 // Recommendation
-import {orderVideoListByGenre} from "../recommendation.services";
+import {OrderVideoListByGenre} from "../recommendation.services";
 
 const retrieve_video_by_id: DocumentNode = gql`
     query($id: Int!){
@@ -51,7 +51,7 @@ export async function fill_genre_list(genre: string, genre_list_id: number[]){
                 released_year: result.data.retrieveVideoById.released_year,
                 description: result.data.retrieveVideoById.description,
                 thumbnail_url: result.data.retrieveVideoById.thumbnail_url,
-                video_url: result.data.retrieveVideoById.emavideo_url,
+                video_url: result.data.retrieveVideoById.video_url,
                 director: result.data.retrieveVideoById.director,
                 producer: result.data.retrieveVideoById.producer,
                 genre: result.data.retrieveVideoById.genre
@@ -78,7 +78,7 @@ export async function generateHome(){
         // Lista de géneros para mostrar
         let genres: string[] = ['Drama', 'Terror', 'Accion'];
         for(let genre of genres){
-            let genre_list_id_p: number[] = await orderVideoListByGenre(genre, 10);
+            let genre_list_id_p: number[] = await OrderVideoListByGenre(genre, 10);
             let video_set: VideoSet = await fill_genre_list(genre, genre_list_id_p);
             if (video_set.video_list.length){
                 catalogue.videos.push(video_set)

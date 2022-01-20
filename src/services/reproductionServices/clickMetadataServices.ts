@@ -8,6 +8,8 @@ import {
     DocumentNode,
     gql
 } from "@apollo/client";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux";
 
 // Crowstream
 import client from "../common.services";
@@ -58,13 +60,12 @@ const update_click_count_metadata: DocumentNode = gql`
 
 export async function GetClickCountMetadataById(user_id: string, video_id: number){
     try{
-        console.log("user", user_id)
-        console.log("vider", video_id)
+        const token = useSelector((state: RootState) => state.user.token);
         const result: ApolloQueryResult<any> = await client.query({
             query: get_click_count_metadata,
             context: {
                 headers: {
-                    authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNTM5Y2M2LTNjYzUtNDA4Ny1hYjQwLWI3M2I4ZjU3OTIzNiIsImVtYWlsIjoidGVzdHVzZXJAdGVzdC5jb20iLCJpYXQiOjE2NDIzOTAzNDAsImV4cCI6MTY0MjM5Mzk0MH0.eLElUdpXfWiKvu8o49mACmDdMF-I8DleMj3rt2qOXqs"
+                    authorization: "Bearer " + token
                 }
             },
             variables: {
@@ -83,11 +84,12 @@ export async function GetClickCountMetadataById(user_id: string, video_id: numbe
 
 export async function CreateClickCountMetadata(video_id: Number){
     try{
+        const token = useSelector((state: RootState) => state.user.token);
         const result = await client.mutate({
             mutation: create_click_count_metadata,
             context: {
                 headers: {
-                    authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNTM5Y2M2LTNjYzUtNDA4Ny1hYjQwLWI3M2I4ZjU3OTIzNiIsImVtYWlsIjoidGVzdHVzZXJAdGVzdC5jb20iLCJpYXQiOjE2NDIzOTQyMDgsImV4cCI6MTY0MjM5NzgwOH0.01L_jH3WAWFvIN9d_zeqgywXaUJ5biTKQdNCvG1wehY"
+                    authorization: "Bearer " + token
                 }
             },
             variables: {
@@ -104,11 +106,12 @@ export async function CreateClickCountMetadata(video_id: Number){
 
 export async function UpdateClickCountMetadata(user_id: String, video_id: Number){
     try{
+        const token = useSelector((state: RootState) => state.user.token);
         const result = await client.mutate({
             mutation: update_click_count_metadata,
             context: {
                 headers: {
-                    authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNTM5Y2M2LTNjYzUtNDA4Ny1hYjQwLWI3M2I4ZjU3OTIzNiIsImVtYWlsIjoidGVzdHVzZXJAdGVzdC5jb20iLCJpYXQiOjE2NDIzOTAzNDAsImV4cCI6MTY0MjM5Mzk0MH0.eLElUdpXfWiKvu8o49mACmDdMF-I8DleMj3rt2qOXqs"
+                    authorization: "Bearer " + token
                 }
             },
             variables: {

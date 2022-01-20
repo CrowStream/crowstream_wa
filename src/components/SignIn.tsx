@@ -21,10 +21,7 @@ function SignInCrowStream() {
 
     const handleSignIn = async () => {
         if (!signinEmailInput || !signinPasswordInput) return;
-        console.log("ANTES:" + JSON.stringify(store.getState()))
-        const authenticatedUser: PayloadAction<User> = { payload: await SignIn(signinEmailInput, signinPasswordInput), type: sign_in.name }
-        dispatch(sign_in(user, authenticatedUser));
-        console.log("DESPUES:" + JSON.stringify(store.getState()))
+        //dispatch(signUp(await()));
     }
     return (
         <div className="Login">

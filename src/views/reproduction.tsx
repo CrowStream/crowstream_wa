@@ -5,8 +5,6 @@ import { RootState } from "../redux"
 
 export const Reproduction = () => {
     const description : ModalData = useSelector((state: RootState) =>  state.description);
-    
-    //console.log(description.video.video_name);
     return(
         <div>
         <VideoPlayer episode={{id: description.video.id, poster: description.video.thumbnail_url, video: description.video.video_url}}/>

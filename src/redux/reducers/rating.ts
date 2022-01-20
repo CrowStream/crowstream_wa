@@ -6,6 +6,12 @@ import {
     SliceCaseReducers
 } from '@reduxjs/toolkit';
 
+// Redux
+import {
+    AnyAction,
+    Reducer
+} from 'redux';
+
 // Crowstream
 import { LikedVideo } from '../types';
 
@@ -30,5 +36,6 @@ const ratingSlice: Slice<LikedVideo, SliceCaseReducers<LikedVideo>, string> = cr
     }
 });
 
+export const ratingReducer: Reducer<LikedVideo, AnyAction> = ratingSlice.reducer;
 export const { retrieve_actual }: CaseReducerActions<SliceCaseReducers<LikedVideo>> = ratingSlice.actions
 export default ratingSlice.reducer

@@ -1,11 +1,12 @@
-import React, { MouseEventHandler, useState } from 'react';
-import { Button, Form, Container, Accordion, useAccordionButton, Col, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Form, Container, Accordion, useAccordionButton, Col, Row, Alert } from 'react-bootstrap';
 import { User } from '../redux/types';
-import { SignIn } from '../services';
+import { SignIn, WhoIAm } from '../services';
 import { useSelector, useDispatch } from 'react-redux';
-import {sign_in} from '../redux/reducers/user';
-import {RootState, store, useReduxDispatch} from '../redux/store';
-
+import {getAllProfiles, signIn, whoAmI} from '../redux/reducers/user';
+import { GetAllProfiles } from '../services';
+import {RootState} from '../redux/store';
+import { useNavigate } from "react-router-dom";
 
 function CustomToggle(props: any) {
     const { children, eventKey } = props;
@@ -29,19 +30,41 @@ function LoginCrowStream() {
     const user: User = useSelector((state: RootState) => state.user);
     const [loginEmailInput, setLoginEmailInput] = useState("");
     const [loginPasswordInput, setLoginPasswordInput] = useState("");
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const dispatch = useReduxDispatch();
-
+    function Alerta() {
+        if (user.token) {
+          return <Alert variant='success'> Sesión iniciada</Alert>;
+        }else if(user.token == 'Fail'){
+            <Alert variant='danger'>Error al iniciar sesión</Alert>;
+        }
+        return <div/>;
+    }
+    
     const handleLogin = async () => {
         if (!loginEmailInput || !loginPasswordInput) return;
-        dispatch(sign_in({state: user, payload: await SignIn(loginEmailInput, loginPasswordInput)}));
+        try{
+            dispatch(signIn(await SignIn(loginEmailInput, loginPasswordInput)));
+            dispatch(whoAmI((await WhoIAm())));
+            dispatch(getAllProfiles(await GetAllProfiles()));
+            if(user.token){
+                navigate("/profiles");
+            }
+        }catch(e){
+            console.log(e)
+            user.token = 'Fail'
+            
+            alert("Error en el login")
+        }
+        
     }
 
     return (
         <div className="Login">
-            {user.token}
             <Row className="justify-content-md-center">
             <Col md="6">
+                    <Alerta/>
                     <Container id="init">
                         <h1>Inicia sesión</h1>
                         <Form>
@@ -53,9 +76,6 @@ function LoginCrowStream() {
                                     value={loginEmailInput}
                                     onChange={(e) => setLoginEmailInput(e.target.value)}
                                 />
-                                <Form.Text className="text-muted">
-                                    No compartiremos tu correo con nadie más.
-                                </Form.Text>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
