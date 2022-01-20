@@ -1,6 +1,6 @@
 import { ListGroup, Image } from "react-bootstrap";
 import { VideoSet } from "../redux/types";
-import { retrieve_actualLike } from "../services";
+import { CreateClickCountMetadata, retrieve_actualLike } from "../services";
 import { changeModalData, RootState, useReduxDispatch } from "../redux";
 import { retrieve_actual } from "../redux/reducers/rating";
 import { useSelector } from "react-redux";
@@ -24,9 +24,10 @@ function VideoRow(props: VideoRowProps){
                 return (
                 <div>
                 <ListGroup.Item style={{backgroundColor: "#000000", color: "#FFFFFF"}}>
-                    <div onClick={() => {
+                    <div onClick={async() => {
                         dispatch(changeModalData({video: video, show: true,}));
-                        dispatch(retrieve_actual(retrieve_actualLike(profile,  video.id)));
+                        CreateClickCountMetadata(video.id);
+                        dispatch(retrieve_actual({user_id: profile, video_id: video.id ,like: await retrieve_actualLike(profile,  video.id)}));
                     }}>
                     <Image rounded width={300} height={180} src={video.thumbnail_url} ></Image>
                     <h5>{video.video_name}</h5>
@@ -41,3 +42,7 @@ function VideoRow(props: VideoRowProps){
 }
 
 export default VideoRow;
+
+function create_click_count_metadata() {
+    throw new Error("Function not implemented.");
+}

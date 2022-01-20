@@ -9,7 +9,7 @@ import {
     gql
 } from "@apollo/client";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux";
+import { RootState, store } from "../../redux";
 
 // Crowstream
 import client from "../common.services";
@@ -60,7 +60,7 @@ const update_click_count_metadata: DocumentNode = gql`
 
 export async function GetClickCountMetadataById(user_id: string, video_id: number){
     try{
-        const token = useSelector((state: RootState) => state.user.token);
+        const token = store.getState().currentProfile.id;
         const result: ApolloQueryResult<any> = await client.query({
             query: get_click_count_metadata,
             context: {
@@ -84,7 +84,7 @@ export async function GetClickCountMetadataById(user_id: string, video_id: numbe
 
 export async function CreateClickCountMetadata(video_id: Number){
     try{
-        const token = useSelector((state: RootState) => state.user.token);
+        const token = store.getState().currentProfile.id;
         const result = await client.mutate({
             mutation: create_click_count_metadata,
             context: {
@@ -106,7 +106,7 @@ export async function CreateClickCountMetadata(video_id: Number){
 
 export async function UpdateClickCountMetadata(user_id: String, video_id: Number){
     try{
-        const token = useSelector((state: RootState) => state.user.token);
+        const token = store.getState().currentProfile.id;
         const result = await client.mutate({
             mutation: update_click_count_metadata,
             context: {

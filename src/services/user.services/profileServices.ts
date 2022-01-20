@@ -4,16 +4,20 @@
 
 // Apollo
 import {
+    ApolloQueryResult,
     DocumentNode,
     gql
 } from "@apollo/client";
+import { useSelector } from "react-redux";
+import { RootState, store } from "../../redux";
+import { Profile, Profiles } from "../../redux/types";
 
 // Crowstream
-import { token_protected_mutation, token_protected_query } from "../common.services";
+import client, { token_protected_mutation, token_protected_query } from "../common.services";
 
 const create_profile: DocumentNode = gql`
     mutation($name: String!) {
-        createPrfile(newProfile: {
+        createProfile(newProfile: {
             name: $name
         }) {
             profile {
@@ -47,26 +51,89 @@ const get_all_profiles: DocumentNode = gql`
     }
 `;
 
-export function CreateProfile(name: String) {
-    return new Promise((resolve) => {
-        token_protected_mutation(create_profile, { name })
-            .then(resolve)
-            .catch(console.error);
-    });
+export async function CreateProfile(name: String) {
+    try{
+        const token = store.getState().user.token;
+        const result = await client.mutate({
+            mutation: create_profile,
+            context:{
+                headers:{
+                    authorization: "Bearer " + token
+                }
+            },
+            variables: {
+                name: name
+            }
+        })
+        let profile: Profile ={
+            id: result.data.createProfile.profile.id,
+            name: result.data.createProfile.profile.name
+        }
+        return profile
+    }catch(error){
+        console.log("Error in CreateProfile: "+ error);
+        let profile = {
+            id:"",
+            name:""
+        }
+        return profile;
+    }
+    
 }
 
-export function GetProfileByID(id: String) {
-    return new Promise((resolve) => {
-        token_protected_query(get_profile_by_id, { id })
-            .then(resolve)
-            .catch(console.error);
-    });
+export async function GetProfileByID(id: String) {
+    try{
+        const token = store.getState().user.token;
+        const result: ApolloQueryResult<any> = await client.query({
+            query: get_profile_by_id,
+            variables:{
+                id: id
+            },
+            context:{
+                headers:{
+                    authorization: "Bearer " + token
+                }
+            }
+        })
+        let profile: Profile ={
+            id: result.data.createProfile.profile.id,
+            name: result.data.createProfile.profile.name
+        }
+        return profile;
+    }catch(error){
+        console.log("Error in GetProfileById: "+ error);
+        let profile = {
+            id:"",
+            name:""
+        }
+        return profile;
+    }
+    
 }
 
-export function GetAllProfiles() {
-    return new Promise((resolve) => {
-        token_protected_query(get_all_profiles, {})
-            .then(resolve)
-            .catch(console.error);
-    });
+export async function GetAllProfiles() {
+    try {
+        const token = store.getState().user.token;
+        const result: ApolloQueryResult<any> = await client.query({
+            query: get_all_profiles,
+            variables: {},
+            context: {
+                headers: {
+                    authorization: "Bearer " + token
+                }
+            }
+        })
+        let profiles: Profiles ={
+            account_id: result.data.userProfiles.account_id,
+            profiles: result.data.userProfiles.profiles
+        }
+        return profiles;
+    } catch (error) {
+        console.log("Error in GetAllProfiles: " + error)
+        let profiles ={
+            account_id: "",
+            profiles: []
+        }
+        return profiles;
+    }
 }

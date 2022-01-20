@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Button, Form, Container, Col, Row } from 'react-bootstrap';
 import { RootState } from '../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
-import { createProfile, getAllProfiles, signUp, whoAmI } from '../redux/reducers';
-import { CreateProfile, GetAllProfiles, SignUp, WhoIAm } from '../services';
-import { User } from '../redux/types';
+import { createProfile, getAllProfiles, signIn, signUp, whoAmI } from '../redux/reducers';
+import { CreateProfile, GetAllProfiles, SignIn, SignUp, WhoIAm } from '../services';
+import { Profile, Profiles, User } from '../redux/types';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function SignUpCrowStream() {
 
     const user: User = useSelector((state: RootState) => state.user);
-
+    const profiles: Profiles = useSelector((state: RootState)=> state.profiles);
     const [signupEmailInput, setSignUpEmailInput] = useState("");
     const [signupPasswordInput, setSignUpPasswordInput] = useState("");
     const navigate = useNavigate();
@@ -21,10 +21,8 @@ function SignUpCrowStream() {
     const handleSignUp = async () => {
         if (!signupEmailInput || !signupPasswordInput) return;
         dispatch(signUp(await SignUp(signupEmailInput, signupPasswordInput)));
-        console.log("id: "+user.id)
-        dispatch(whoAmI((await WhoIAm())));
-        console.log("Token: "+user.token)
-        dispatch(createProfile(await CreateProfile("user"))  )
+        dispatch(signIn(await SignIn(signupEmailInput, signupPasswordInput)));
+        dispatch(createProfile(await CreateProfile("user")));
         dispatch(getAllProfiles(await GetAllProfiles()));
         if(user.token){
             navigate("/profiles");

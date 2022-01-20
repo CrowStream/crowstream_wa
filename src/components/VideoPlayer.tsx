@@ -1,4 +1,6 @@
 import ReactPlayer from 'react-player';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux';
 import { UpdateClickCountMetadata } from '../services';
 
 export interface VideoPlayerProps {
@@ -14,8 +16,9 @@ const VideoPlayer = (props: VideoPlayerProps) => {
     console.log(episode.id);
     console.log(episode.poster);
     console.log(episode.video);
+    const profile_id: string = useSelector((state: RootState) => state.currentProfile.id)
     async function updateClickCount() {
-        const res = await UpdateClickCountMetadata("c1539cc6-3cc5-4087-ab40-b73b8f579236", episode.id);
+        const res = await UpdateClickCountMetadata(profile_id, episode.id);
     }
 
     return <ReactPlayer

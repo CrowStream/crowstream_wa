@@ -17,5 +17,5 @@ export interface Profile {
 
 export interface Profiles {
     account_id: string,
-    profiles: [Profile?],
+    profiles: Profile[],
 };

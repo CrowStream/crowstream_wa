@@ -8,8 +8,8 @@ import client from "../common.services";
 import { LikedVideo } from "../../redux/types";
 
 const likevideo: DocumentNode = gql`
-    mutation($user_id: String!, $video_id: String!, $like: Int!) {
-        Liking(liked: {
+    mutation($user_id: String!, $video_id: Int!, $like: Int!) {
+        liking(liked: {
             user_id: $user_id
             video_id: $video_id
             like: $like
@@ -59,7 +59,7 @@ export async function LikeVideo(user_id: String, video_id: number, like: number)
 
 export async function retrieve_actualLike(user_id: string, video_id: number): Promise<number>{
     try{
-        const result: ApolloQueryResult<any> = await client.query({
+        const result = await client.query({
             query: retrieve_actual_like,
             variables: {
                 userId: user_id,

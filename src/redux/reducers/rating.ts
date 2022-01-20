@@ -28,8 +28,6 @@ const ratingSlice: Slice<LikedVideo, SliceCaseReducers<LikedVideo>, string> = cr
         retrieve_actual: (state: LikedVideo, action: PayloadAction<LikedVideo>): LikedVideo => {
              return {
                 ...state,
-                user_id: action.payload.user_id,
-                video_id: action.payload.video_id,
                 like: action.payload.like
             }
         }

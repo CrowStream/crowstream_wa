@@ -73,8 +73,12 @@ const currentProfileSlice: Slice<Profile, SliceCaseReducers<Profile>, string> = 
     name: 'Profile',
     initialState: currentProfileInitialState,
     reducers: {
-        createProfile: (state: Profile, _): Profile => {
-            return state;
+        createProfile: (state: Profile, action: PayloadAction<Profile>): Profile => {
+            return {
+                ...state,
+                id: action.payload.id,
+                name: action.payload.name
+            }
         },
         getProfileById: (state: Profile, action: PayloadAction<Profile>): Profile => {
             const { id, name } = action.payload;
@@ -116,7 +120,7 @@ export const {
     getAllProfiles,
 }: CaseReducerActions<SliceCaseReducers<User>> = profilesSlice.actions;
 
-export const {createProfile} = currentProfileSlice.actions;
+export const {createProfile, getProfileById} = currentProfileSlice.actions;
 export const userReducer: Reducer<User, AnyAction> = userSlice.reducer;
 export const currentProfileReducer: Reducer<Profile, AnyAction> = currentProfileSlice.reducer;
 export const profilesReducer: Reducer<Profiles, AnyAction> = profilesSlice.reducer;

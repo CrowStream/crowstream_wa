@@ -8,9 +8,7 @@ import {
     DocumentNode,
     gql
 } from "@apollo/client";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux";
-import { User } from "../../redux/types";
+import { store } from "../../redux";
 
 // Crowstream
 import client from "../common.services";
@@ -23,7 +21,7 @@ const order_video_list_by_genre: DocumentNode = gql`
 
 export async function OrderVideoListByGenre(genre: string, nVideos?: number){
     try {
-        const profileId = useSelector((state: RootState) => state.currentProfile.id);
+        const profileId = store.getState().currentProfile.id;
         const result: ApolloQueryResult<any> =  await client.query({
             query: order_video_list_by_genre,
             variables: {

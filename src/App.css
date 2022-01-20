@@ -51,6 +51,9 @@
   padding: 20px;
 }
 
+.modal{
+  border-radius: 25px;
+}
 
 /*##FOOTER*/
 .Footer

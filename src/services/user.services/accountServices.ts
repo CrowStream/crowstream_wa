@@ -91,14 +91,12 @@ export async function SignUp(email: String, password: String) {
                 password: password
             }
         });
-        console.log("Result: "+result.data.signup.account.id)
         let user: User = {
             id: result.data.signup.account.id,
             email: result.data.signup.account.email,
             is_email_verified: result.data.signup.account.is_email_verified,
             token: ''
         }
-        console.log("Reducer id: "+user.id)
         return user;
     }catch(error){
         let user: User = {
@@ -107,7 +105,6 @@ export async function SignUp(email: String, password: String) {
             is_email_verified: false,
             token: ''
         }
-        console.log("Signup error: "+error)
         return user;
     }
 }
@@ -119,7 +116,7 @@ export async function WhoIAm() {
             query: who_i_am,
             context: {
                 headers: {
-                    authorization: "`Bearer " + token
+                    authorization: "Bearer " + token
                 }
             }
         });
@@ -127,7 +124,7 @@ export async function WhoIAm() {
             id: result.data.whoAmI.id,
             email: result.data.whoAmI.email,
             is_email_verified: result.data.whoAmI.id,
-            token: ''
+            token: ""
         }
         return user;
     }catch(error){

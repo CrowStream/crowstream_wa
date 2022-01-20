@@ -5,6 +5,7 @@ import { RootState } from "../redux/store";
 import { Video } from "../redux/types/catalogue";
 import { LikeVideo, UpdateClickCountMetadata } from "../services";
 import { useNavigate } from "react-router-dom";
+import { AiFillLike, AiFillDislike  } from "react-icons/ai";
 
 interface DescriptionProps{
     video: Video,
@@ -39,6 +40,7 @@ function Description(props: DescriptionProps){
             dialogClassName="modal-90w"
             aria-labelledby="example-custom-modal-styling-title"
             onHide={handleClose}
+            id='modal'
         >
             <Modal.Header closeButton>
             </Modal.Header>
@@ -51,11 +53,9 @@ function Description(props: DescriptionProps){
                         <h1>{video.video_name}</h1>
                     </Row>
                     <Row>
-                        <Col>
-                            <Button disabled={like==1} onClick={handleLike}>👍</Button>
-                        </Col>
-                        <Col>
-                            <Button disabled={like==2} onClick={handleDislike}>👎</Button>
+                        <Col md='12'>
+                            <Button disabled={like==1} onClick={handleLike}><AiFillLike/></Button>
+                            <Button disabled={like==2} onClick={handleDislike}><AiFillDislike/></Button>
                         </Col>
                     </Row>
                     <Row>

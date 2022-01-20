@@ -8,17 +8,17 @@ function Footer() {
                 <Container>
                     <div className="row">
                         <div className="col-sm-12 col-md-6">
-                            <h6>About</h6>
+                            <h6>Acerca de</h6>
                             <p className="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur velit quas aliquam, natus commodi voluptatibus magnam officiis odio cumque repudiandae accusamus nam, iste harum quo ipsam, dolores reprehenderit fugit libero.</p>
                         </div>
 
                         <div className="col-xs-6 col-md-3">
-                            <h6>Categories</h6>
+                            <h6>Categorias</h6>
                             <ul className="footer-links">
-                                <li><a href="">C</a></li>
-                                <li><a href="">UI Design</a></li>
-                                <li><a href="">PHP</a></li>
-                                <li><a href="">Java</a></li>
+                                <li><a href="">Terror</a></li>
+                                <li><a href="">Acción</a></li>
+                                <li><a href="">Misterio</a></li>
+                                <li><a href="">Infantil</a></li>
                                 <li><a href="">Android</a></li>
                                 <li><a href="">Templates</a></li>
                             </ul>
