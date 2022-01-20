@@ -40,26 +40,26 @@ function Description(props: DescriptionProps){
             dialogClassName="modal-90w"
             aria-labelledby="example-custom-modal-styling-title"
             onHide={handleClose}
-            id='modal'
+            
         >
             <Modal.Header closeButton>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body id='modal' style={{color: "#FFFFFF", backgroundColor: "#1b1c1f", padding:"20px"}}>
                 <Col>
                     <Row>
-                        <Image src={video.thumbnail_url} height={300} width={470}/>
+                        <Image src={video.thumbnail_url} height={460} width={200}/>
                     </Row>
                     <Row>
                         <h1>{video.video_name}</h1>
                     </Row>
                     <Row>
-                        <Col md='12'>
+                        <Col md='12' className="justify-content-md-center">
                             <Button disabled={like==1} onClick={handleLike}><AiFillLike/></Button>
                             <Button disabled={like==2} onClick={handleDislike}><AiFillDislike/></Button>
                         </Col>
                     </Row>
                     <Row>
-                        <h2>{video.released_year}</h2><p></p>
+                        <h2>{video.released_year}</h2>
                     </Row>
                     <Row>
                         <Button onClick={handlePlay}>Play</Button>

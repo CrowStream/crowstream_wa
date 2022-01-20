@@ -30,6 +30,10 @@
   color: #61dafb;
 }
 
+#profile{
+  background-color: #19154E;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -51,12 +55,10 @@
   padding: 20px;
 }
 
-.modal{
-  border-radius: 25px;
-}
 
-.poster{
-  border-radius: 25px;
+
+#poster{
+  border-radius: 100px;
 }
 
 /*##FOOTER*/

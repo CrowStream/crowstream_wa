@@ -16,20 +16,20 @@ function VideoRow(props: VideoRowProps){
     const profile: string = useSelector((state: RootState) => state.currentProfile.id);
     
     return (
-        <div className="videoRow" style={{color: "#FFFFFF", backgroundColor: "#000000"}}>
+        <div className="videoRow" style={{color: "#FFFFFF", backgroundColor: "#1b1c1f"}}>
             <h5>{props.videoSet.description}</h5>
             <div style={{overflow: "auto"}}>
-            <ListGroup horizontal >
+            <ListGroup horizontal className="justify-content-md-center">
             {props.videoSet.video_list.map( (video) =>{
                 return (
                 <div>
-                <ListGroup.Item style={{backgroundColor: "#000000", color: "#FFFFFF"}}>
+                <ListGroup.Item style={{backgroundColor: "#1b1c1f", color: "#FFFFFF"}}>
                     <div onClick={async() => {
                         dispatch(changeModalData({video: video, show: true,}));
                         CreateClickCountMetadata(video.id);
                         dispatch(retrieve_actual({user_id: profile, video_id: video.id ,like: await retrieve_actualLike(profile,  video.id)}));
                     }}>
-                    <Image id='poster' rounded width={500} height={180} src={video.thumbnail_url} ></Image>
+                    <Image id='poster' rounded width={250} height={390} src={video.thumbnail_url} ></Image>
                     <h5>{video.video_name}</h5>
                     </div>
                 </ListGroup.Item>

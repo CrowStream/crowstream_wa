@@ -14,7 +14,7 @@ import {store} from "../redux/store";
 
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-    uri: 'localhost:5533/graphql/',
+    uri: 'http://localhost:5533/graphql/',
     //credentials: "same-origin",
     cache: new InMemoryCache()
 });

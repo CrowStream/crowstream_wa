@@ -18,10 +18,12 @@ function ProfilesPanel() {
                 <Row>
                     {profiles.map((profile) => {
                         return(
+                            <div>
+                            <h1>¿Quién está viendo?</h1>
                             <Col>
                                 <Card>
                                     <Card.Body>
-                                        <Button onClick={async()=>{
+                                        <Button id='profile' onClick={async()=>{
                                             dispatch(getProfileById(profile));
                                             dispatch( generate_home(await generateHome() ) );
                                             navigate("/home")
@@ -29,6 +31,7 @@ function ProfilesPanel() {
                                     </Card.Body>
                                 </Card>
                             </Col>
+                            </div>
                         )
                     })}
                 </Row>

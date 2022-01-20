@@ -5,7 +5,7 @@ import { SignIn, WhoIAm } from '../services';
 import { useSelector, useDispatch } from 'react-redux';
 import {getAllProfiles, signIn, whoAmI} from '../redux/reducers/user';
 import { GetAllProfiles } from '../services';
-import {RootState} from '../redux/store';
+import store, {RootState} from '../redux/store';
 import { useNavigate } from "react-router-dom";
 
 function CustomToggle(props: any) {
@@ -48,7 +48,7 @@ function LoginCrowStream() {
             dispatch(signIn(await SignIn(loginEmailInput, loginPasswordInput)));
             dispatch(whoAmI((await WhoIAm())));
             dispatch(getAllProfiles(await GetAllProfiles()));
-            if(user.token){
+            if(store.getState().user.token){
                 navigate("/profiles");
             }
         }catch(e){

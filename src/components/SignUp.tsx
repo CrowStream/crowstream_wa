@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Col, Row } from 'react-bootstrap';
-import { RootState } from '../redux/store';
+import store, { RootState } from '../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { createProfile, getAllProfiles, signIn, signUp, whoAmI } from '../redux/reducers';
 import { CreateProfile, GetAllProfiles, SignIn, SignUp, WhoIAm } from '../services';
@@ -24,7 +24,7 @@ function SignUpCrowStream() {
         dispatch(signIn(await SignIn(signupEmailInput, signupPasswordInput)));
         dispatch(createProfile(await CreateProfile("user")));
         dispatch(getAllProfiles(await GetAllProfiles()));
-        if(user.token){
+        if(store.getState().user.token){
             navigate("/profiles");
         }
     }
