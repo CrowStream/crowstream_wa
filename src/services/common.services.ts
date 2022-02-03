@@ -12,9 +12,8 @@ import {
 } from "@apollo/client";
 import {store} from "../redux/store";
 
-
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
-    uri: 'http://localhost:5533/graphql/',
+    uri: `http://${process.env.REACT_APP_PROXY_IP}:5533/graphql/`,
     //credentials: "same-origin",
     cache: new InMemoryCache()
 });

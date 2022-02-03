@@ -6,6 +6,7 @@ services:
             context: .
             dockerfile: dockerfile
         image: crowstream2021/crowstream_wa
+        env_file: .env
         container_name: crowstream_wa_dev
         ports:
             - '3000:3000'
